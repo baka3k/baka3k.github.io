@@ -1,6 +1,6 @@
 ---
 layout: default
-title: BroadcastReceiver for BOOT_COMPLETED is too slow
+title: BOOT_COMPLETED Intent
 nav_order: 11
 ---
 BOOT_COMPLETED thường sẽ được system ném ra sau khi hoàn thành các tác vụ đảm bảo hoạt động, sau thời điểm này system ở trạng thái stable đủ để làm việc
