@@ -14,4 +14,4 @@ TBD
 
 - [baka3k](https://github.com/baka3k){:target="_blank"}  
 
-**[Main Page](https://baka3k.github.io/)**
+**[Main Page](https://medium.com/@baka3k)**
