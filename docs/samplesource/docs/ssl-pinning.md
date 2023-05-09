@@ -1,7 +1,8 @@
 ---
 layout: default
 title: SSL Pinning Android
-nav_order: 10
+parent: 02. Sample Source Code
+nav_order: 103
 ---
 
 # SSL Pinning Android
