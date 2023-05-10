@@ -17,7 +17,7 @@ nav_order: 53
 - [ ] (Mandatory) Do not use default android:usesCleartextTraffic && do not set android:usesCleartextTraffic=true 
 
 __BAD__
-```kotlin
+```xml
 <application
         ...
         android:usesCleartextTraffic="true" // or do not define
@@ -29,7 +29,7 @@ __BAD__
 ```
 
 __GOOD__
-```kotlin
+```xml
 <application
         ...
         android:usesCleartextTraffic="false" 
@@ -40,7 +40,7 @@ __GOOD__
 
 - [ ] (Mandatory) in case of mandatory use Cleartext(http,fpt..etc) - use network-security-config for special domain
 
-```kotlin
+```xml
 
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
