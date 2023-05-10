@@ -2,7 +2,7 @@
 layout: default
 title: 06. Secure Coding
 parent: 01. Coding checklist
-nav_order: 53
+nav_order: 62
 ---
 
 ## 01. Saving Data
