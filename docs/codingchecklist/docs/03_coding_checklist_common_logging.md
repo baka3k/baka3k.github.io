@@ -20,7 +20,7 @@ nav_order: 52
     }
 ```
 
-
+<br />
 
 - [ ] (Mandatory) Do not ignore exception
 
@@ -48,7 +48,7 @@ __GOOD__
     }
 ```
 
-
+<br />
 
 ## 02. Exception
 
@@ -79,7 +79,7 @@ __GOOD__
     }
 ```
 
-
+<br />
 
 - [ ] (Optional) Try throw exception instead of return error for *Critical* issue
 

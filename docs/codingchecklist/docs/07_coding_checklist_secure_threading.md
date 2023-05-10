@@ -3,6 +3,7 @@ layout: default
 title: 07. MultiThreading
 parent: 01. Coding checklist
 nav_order: 63
+
 ---
 
 ## 01. CoroutineScope
@@ -28,7 +29,7 @@ coroutineScope.launch {
 coroutineScope.cancel() 
 ```
 
-
+<br />
 
 - [ ] (Mandatory) Do not create new coroutineScope
 - [ ] (Mandatory) prefer use suspendCancellableCoroutine instead of suspendCoroutine
@@ -86,6 +87,8 @@ private suspend fun loadUrl(path: String): Int = withContext(Dispatchers.Main) {
 }
 ```
 
+<br />
+
 ## 02. Comparison condition equals (==)
 
 - [ ] (Mandatory) Do not use comparison condition equals as final break in multithreading environment
@@ -138,5 +141,7 @@ fun raceCondition() {
     }
 }
 ```
+
+<br />
 
 ## 03. Channel

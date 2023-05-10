@@ -27,6 +27,8 @@ https://xxx.com
 https://xxx.com<br>
 https://xxx.com
 
+<br />
+
 # 2. Common rule
 - [ ] (Mandatory) Branch name is follow rule (feature/<ID_Task>[/<task_short_description>])
 - [ ] (Mandatory) Title of MR is follow rule ([Feature] <ID_Task>: <description>)
@@ -36,6 +38,7 @@ https://xxx.com
 - [ ] (Mandatory) Don't commit unrelated code to your features.
 - [ ] (Mandatory) Run Static Code Analysis at local and fixed all warning errors. (Pending now)
 
+<br />
 
 # 3. Self-review
 - [ ] (Mandatory) Format related code.
@@ -47,9 +50,13 @@ https://xxx.com
 - [ ] (Mandatory) All source files must be encoded as UTF-8.	
 - [ ] (Mandatory) Use static final for constants
 
+<br />
+
 # 4. Self-test 
 - [ ] (Mandatory) Current function is working normally
 - [ ] (Mandatory) Related function is not affected
+
+<br />
 
 # 5. Solution
 

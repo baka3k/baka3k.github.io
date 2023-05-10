@@ -3,6 +3,7 @@ layout: default
 title: 06. Secure Coding
 parent: 01. Coding checklist
 nav_order: 62
+
 ---
 
 ## 01. Saving Data
@@ -11,6 +12,7 @@ nav_order: 62
 
 - [ ] (Mandatory) Do not hardcode key/password in source code, please use [local.properties or Secrets Gradle plugin](https://developers.google.com/maps/documentation/places/android-sdk/secrets-gradle-plugin)
 
+<br />
 
 ## 02. Connection
 
@@ -37,6 +39,8 @@ __GOOD__
 >
 </application>
 ```
+
+<br />
 
 - [ ] (Mandatory) in case of mandatory use Cleartext(http,fpt..etc) - use network-security-config for special domain
 
