@@ -85,13 +85,11 @@ fun BadView() {
         data.add(i)
     }
     val listState = rememberLazyListState()
-    val showButton = listState.firstVisibleItemIndex > 0
-    Log.d("test", "BadView()") // recompose many times while scroll list items
+    val showButton = listState.firstVisibleItemIndex > 0 // BAD: use direct state
     Column {
-        Log.d("test", "Column()") // recompose many times while scroll list items
-        if (showButton) {
+        if (showButton) { // BAD : recompose many times while scroll list items
             Button(onClick = { /*TODO*/ }) {
-                Text(text = "Hello meo meo")
+                Text(text = "Hello hell, I'm still sad ")
             }
         }
         LazyColumn(state = listState) {
@@ -113,14 +111,14 @@ fun GoodView() {
     }
     val listState = rememberLazyListState()
     val showButton by remember {
-        derivedStateOf { // use derivedStateOf to prevent recompose
+        derivedStateOf { // GOOD: use derivedStateOf to prevent recompose
             listState.firstVisibleItemIndex > 0
         }
     }
     Column {
         if (showButton) {
             Button(onClick = { /*TODO*/ }) {
-                Text(text = "Hello meo meo")
+                Text(text = "Hello hello world, I'm feeling better ")
             }
         }
         LazyColumn(state = listState) {
