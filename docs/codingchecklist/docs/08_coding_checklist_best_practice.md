@@ -13,12 +13,11 @@ nav_order: 64
 __BAD:__
 ```kotlin
 fun CompassView(compassStateProvider: () -> Float) {
-   
     Canvas(
         modifier = Modifier
             .width(LocalConfiguration.current.screenWidthDp.dp)
             .height(LocalConfiguration.current.screenWidthDp.dp)
-            .rotate(-compassStateProvider()) // bad do not use this function - Compose recomposes many times
+            .rotate(-compassStateProvider()) // BAD: do not use this function -  Recomposes many times
     )
 }
 ```
@@ -89,7 +88,7 @@ fun BadView() {
     Column {
         if (showButton) { // BAD : recompose many times while scroll list items
             Button(onClick = { /*TODO*/ }) {
-                Text(text = "Hello hell, I'm still sad ")
+                Text(text = "Welcome to the hell, I'm still sad ")
             }
         }
         LazyColumn(state = listState) {
@@ -118,7 +117,7 @@ fun GoodView() {
     Column {
         if (showButton) {
             Button(onClick = { /*TODO*/ }) {
-                Text(text = "Hello hello world, I'm feeling better ")
+                Text(text = "Hello world, I'm feeling better ")
             }
         }
         LazyColumn(state = listState) {
@@ -138,14 +137,14 @@ __BAD:__
 @Composable
 fun BadComposable() {
     var count by remember { mutableStateOf(0) }
-
     // Causes recomposition on click
     Button(onClick = { count++ }, Modifier.wrapContentSize()) {
         Text("Recompose")
     }
 
     Text("$count")
-    count++ // BAD: Backwards write, writing to state after it has been read - Re-compose again & again
+    count++ // BAD: Backwards write
+    // Writing to state after it has been read - Re-compose again & again
 }
 
 ```
