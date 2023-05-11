@@ -7,7 +7,7 @@ nav_order: 50
 
 ## 01. Process rules
 
-|Level|Severity|
+|Type|Severity|
 |---|--- |
 |Mandatory|Must follow, have no exception|
 |Recommendation|Should follow, exceptions will be accepted after internal **team make discussion** |
