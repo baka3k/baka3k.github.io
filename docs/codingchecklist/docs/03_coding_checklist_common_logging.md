@@ -13,8 +13,7 @@ nav_order: 52
 ```kotlin
     try {
         // todo smth
-    }catch (e:Exception)
-    {
+    }catch (e:Exception){
         Log.e("ClassName","#functionName() err: ${e.message}",e)
         // or  Crashlytics.logException(e)  ... or etc
     }
