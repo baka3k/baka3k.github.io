@@ -8,7 +8,7 @@ nav_order: 64
 
 ## 01. Compose
 
-- [ ] (Mandatory) Defer reads as long as possible
+- [ ] (Mandatory) Defer reads state as long as possible
 
 __BAD:__
 ```kotlin
