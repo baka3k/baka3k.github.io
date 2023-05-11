@@ -37,7 +37,7 @@ coroutineScope.cancel()
 __BAD:__
 
 ```kotlin
-internal suspend fun loadUrl(path: String): Int = suspendCoroutine { continuation ->
+private suspend fun loadUrl(path: String): Int = suspendCoroutine { continuation ->
         CoroutineScope(Dispatchers.Main).launch { // BAD create new CoroutineScope(Dispatchers.Main)
             webView?.let {
                 it.webViewClient = object : WebViewClient() {
@@ -89,9 +89,9 @@ private suspend fun loadUrl(path: String): Int = withContext(Dispatchers.Main) {
 
 <br />
 
-## 02. Comparison condition equals (==)
+## 02. Race Condition
 
-- [ ] (Mandatory) Do not use comparison condition equals as final break in multithreading environment
+- [ ] (Mandatory) Do not use comparison condition equals  '==' as final break in multithreading environment
 
 __BAD:__
 
