@@ -1,22 +1,20 @@
 ---
 layout: default
 title: 06. Secure Coding
-parent: 01. Coding checklist
+parent: 01. Android Coding checklist
 nav_order: 62
 
 ---
 
-## 01. Saving Data
-
+1. Saving Data
 - [ ] (Mandatory) Use EncryptedSharedPreferences when store sensitive data
-
 - [ ] (Mandatory) Do not hardcode key/password in source code, please use [local.properties or Secrets Gradle plugin](https://developers.google.com/maps/documentation/places/android-sdk/secrets-gradle-plugin)
 
-<br />
+1. Sharing Data
+- [ ] (Mandatory) Sharing Data must be protected on a par with original data
 
-## 02. Connection
-
-- [ ] (Mandatory) Do not use default android:usesCleartextTraffic && do not set android:usesCleartextTraffic=true 
+1. Connection
+- [ ] (Mandatory) Do not use default android:usesCleartextTraffic && do not set android:usesCleartextTraffic=true
 
 __BAD__
 ```xml
@@ -29,7 +27,6 @@ __BAD__
 >
 </application>
 ```
-
 __GOOD__
 ```xml
 <application
@@ -54,3 +51,17 @@ __GOOD__
 </network-security-config>
 
 ```
+
+<br />
+
+- [ ] (Mandatory) Specify 'android:exported'  for all android Components which defined in AndroidManifest
+
+```xml
+<activity
+    android:name="androidx.test.core.app.InstrumentationActivityInvoker$BootstrapActivity"
+    android:exported="false" // do not use default
+    android:theme="@android:style/Theme" >
+</activity>
+```
+
+<br />

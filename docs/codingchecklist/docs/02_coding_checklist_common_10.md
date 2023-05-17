@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 02. Commons
-parent: 01. Coding checklist
+parent: 01. Android Coding checklist
 nav_order: 51
 
 ---
@@ -18,7 +18,7 @@ https://developer.android.com/kotlin/style-guide
 
 - [ ] (Mandatory) Don't use local language(Japanese/Vietnamese...) naming for class name, function name, property, parameter variable (unless it sounds like English, e.g. Okinawa, Hanoi)
 
-- [ ] (Required) Class name must be defined by UpperCamelCase format. Except in the case of abbreviations, for example:DAO, UID, DTO, 
+- [ ] (Mandatory) Class name must be defined by UpperCamelCase format. Except in the case of abbreviations, for example:DAO, UID, DTO, 
     Avoid unnatural simplifications for readability
 
         * Incorrect : AbsClass, Condi, int a, val b

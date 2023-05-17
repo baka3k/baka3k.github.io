@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 08. Performance
-parent: 01. Coding checklist
+parent: 01. Android Coding checklist
 nav_order: 64
 
 ---

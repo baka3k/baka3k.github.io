@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 03. Logging & Exception
-parent: 01. Coding checklist
+parent: 01. Android Coding checklist
 nav_order: 52
 
 ---
