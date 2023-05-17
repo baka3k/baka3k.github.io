@@ -8,7 +8,7 @@ nav_order: 63
 
 ## 01. CoroutineScope
 
-- [ ] (Mandatory) Do not use GlobalScope
+- [ ] (Mandatory) Do not use `GlobalScope`
 
 __BAD:__
 
@@ -32,7 +32,7 @@ coroutineScope.cancel()
 <br />
 
 - [ ] (Mandatory) Do not create new coroutineScope
-- [ ] (Mandatory) prefer use suspendCancellableCoroutine instead of suspendCoroutine
+- [ ] (Mandatory) prefer use `suspendCancellableCoroutine` instead of `suspendCoroutine`
 
 __BAD:__
 
@@ -91,7 +91,7 @@ private suspend fun loadUrl(path: String): Int = withContext(Dispatchers.Main) {
 
 ## 02. Race Condition
 
-- [ ] (Mandatory) Do not use comparison condition equals  '==' as final break in multithreading environment
+- [ ] (Mandatory) Do not use comparison condition equals  `'=='` as final break in multithreading environment
 
 __BAD:__
 

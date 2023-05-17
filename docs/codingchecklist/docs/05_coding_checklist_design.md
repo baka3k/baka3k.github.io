@@ -33,6 +33,6 @@ data class NetworkEpisode(
 
 ## 03. Design Thread
 
-- [ ] (Mandatory) Do not direct use Thread() of java
+- [ ] (Mandatory) Do not direct use `Thread()` of java
 
 - [ ] (Mandatory) Do not run bulk of tasks/threads without Thread Pool

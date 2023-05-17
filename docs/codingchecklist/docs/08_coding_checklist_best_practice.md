@@ -38,7 +38,7 @@ fun CompassView(compassStateProvider: () -> Float) {
 }
 ```
 <br />
-- [ ] (Mandatory) Use lazy layout keys
+- [ ] (Mandatory) Use lazy layout `keys`
 
 __BAD:__
 
@@ -73,7 +73,7 @@ fun NotesList(notes: List<Note>) {
 }
 ```
 <br />
-- [ ] (Mandatory) Use derivedStateOf to limit recompositions
+- [ ] (Mandatory) Use `derivedStateOf` to limit recompositions
 
 __BAD:__
 ```kotlin

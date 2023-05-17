@@ -20,9 +20,8 @@ https://developer.android.com/kotlin/style-guide
 
 - [ ] (Mandatory) Class name must be defined by UpperCamelCase format. Except in the case of abbreviations, for example:DAO, UID, DTO, 
     Avoid unnatural simplifications for readability
-
-        * Incorrect : AbsClass, Condi, int a, val b
-        * Correct : AbstractClass,  Condition, int count, val user
+    + Incorrect : AbsClass, Condi, int a, val b
+    + Correct : AbstractClass,  Condition, int count, val user
 
 - [ ] (Mandatory) Method name, parameter name, member variable name and local variable name are described by lowerCamelCase
 

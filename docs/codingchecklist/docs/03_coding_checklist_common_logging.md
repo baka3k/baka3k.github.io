@@ -11,7 +11,7 @@ nav_order: 52
 - [ ] (Mandatory) Always add log for exception case
 
 ```kotlin
-    try {
+   try {
         // todo smth
     }catch (e:Exception){
         Log.e("ClassName","#functionName() err: ${e.message}",e)

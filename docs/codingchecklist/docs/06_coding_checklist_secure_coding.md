@@ -7,16 +7,17 @@ nav_order: 62
 ---
 
 1. Saving Data
-- [ ] (Mandatory) Use EncryptedSharedPreferences when store sensitive data
+- [ ] (Mandatory) Use `EncryptedSharedPreferences` when store sensitive data
 - [ ] (Mandatory) Do not hardcode key/password in source code, please use [local.properties or Secrets Gradle plugin](https://developers.google.com/maps/documentation/places/android-sdk/secrets-gradle-plugin)
 
 1. Sharing Data
 - [ ] (Mandatory) Sharing Data must be protected on a par with original data
 
 1. Connection
-- [ ] (Mandatory) Do not use default android:usesCleartextTraffic && do not set android:usesCleartextTraffic=true
+- [ ] (Mandatory) Do not use default `android:usesCleartextTraffic` && do not set `android:usesCleartextTraffic=true` to application tag in `AndroidManifest`
 
 __BAD__
+
 ```xml
 <application
         ...
@@ -39,7 +40,7 @@ __GOOD__
 
 <br />
 
-- [ ] (Mandatory) in case of mandatory use Cleartext(http,fpt..etc) - use network-security-config for special domain
+- [ ] (Mandatory) in case of mandatory use Cleartext(http,fpt..etc) - use `network-security-config` for special domain
 
 ```xml
 
@@ -54,7 +55,7 @@ __GOOD__
 
 <br />
 
-- [ ] (Mandatory) Specify 'android:exported'  for all android Components which defined in AndroidManifest
+- [ ] (Mandatory) Specify `'android:exported'`  for all android Components which defined in AndroidManifest
 
 ```xml
 <activity
