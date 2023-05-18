@@ -8,8 +8,22 @@ nav_order: 61
 
 ## 01. Design Class
 
-- [ ] (Recommendation) Follow DI, do not create instance inside classs
+- [ ] (Recommendation) Follow DI, do not create instance inside class
 
+__BAD:__
+```kotlin
+class BarcodeDecoder(context: Context) {
+    private val display = Display(context)
+    // to do smth
+}
+```
+
+__GOOD:__
+```kotlin
+class BarcodeDecoder(private val display: Display) {
+    // to do smth
+}
+```
 - [ ] (Recommendation) Prefer composition over inheritance
 
 - [ ] (Recommendation) Do not use static navigation in xml - instead, use [Kotlin DSL](https://developer.android.com/guide/navigation/navigation-kotlin-dsl)
@@ -33,6 +47,6 @@ data class NetworkEpisode(
 
 ## 03. Design Thread
 
-- [ ] (Mandatory) Do not direct use `Thread()` of java
+- [ ] (Mandatory) Do not direct use `Java#Thread()` 
 
 - [ ] (Mandatory) Do not run bulk of tasks/threads without Thread Pool

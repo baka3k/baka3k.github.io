@@ -11,12 +11,12 @@ nav_order: 52
 - [ ] (Mandatory) Always add log for exception case
 
 ```kotlin
-   try {
-        // todo smth
-    }catch (e:Exception){
-        Log.e("ClassName","#functionName() err: ${e.message}",e)
-        // or  Crashlytics.logException(e)  ... or etc
-    }
+try {
+    // todo smth
+}catch (e:Exception){
+    Log.e("ClassName","#functionName() err: ${e.message}",e)
+    // or  Crashlytics.logException(e)  ... or etc
+}
 ```
 
 <br />
@@ -26,25 +26,23 @@ nav_order: 52
 __BAD__
 
 ```kotlin
-    try {
-        // todo smth
-        throw IOException() // assumption that above code throw IOException when error
-    }catch (e:Exception) 
-    {
-       // bad code - ignore exception information
-    }
+try {
+    // todo smth
+    throw IOException() // assumption that above code throw IOException when error
+}catch (e:Exception) {
+    // bad code - ignore exception information
+}
 ```
 
 __GOOD__
 ```kotlin
-    try {
-        // todo smth
-        throw IOException() // assumption that above code throw IOException when error
-    }catch (e:IOException) 
-    {
-        Log.e("ClassName","#functionName() err: ${e.message}",e) // or  Crashlytics.logException(e)  ... or etc
-        // GOOD add log or send information to server
-    }
+try {
+    // todo smth
+    throw IOException() // assumption that above code throw IOException when error
+}catch (e:IOException) {
+    Log.e("ClassName","#functionName() err: ${e.message}",e) // or  Crashlytics.logException(e)  ... or etc
+    // GOOD add log or send information to server
+}
 ```
 
 <br />
@@ -56,26 +54,24 @@ __GOOD__
 __BAD__
 
 ```kotlin
-    try {
-        // todo smth
-        throw IOException() // assumption that above code throw IOException when error
-    }catch (e:Exception) // bad code - catch generic exception
-    {
-        Log.e("ClassName","#functionName() err: ${e.message}",e)
-        // or  Crashlytics.logException(e)  ... or etc
-    }
+try {
+    // todo smth
+    throw IOException() // assumption that above code throw IOException when error
+}catch (e:Exception){ // bad code - catch generic exception
+    Log.e("ClassName","#functionName() err: ${e.message}",e)
+    // or  Crashlytics.logException(e)  ... or etc
+}
 ```
 
 __GOOD__
 ```kotlin
-    try {
-        // todo smth
-        throw IOException() // assumption that above code throw IOException when error
-    }catch (e:IOException) // just catch Exactly exception from code
-    {
-        Log.e("ClassName","#functionName() err: ${e.message}",e)
-        // or  Crashlytics.logException(e)  ... or etc
-    }
+try {
+    // todo smth
+    throw IOException() // assumption that above code throw IOException when error
+}catch (e:IOException){ // just catch Exactly exception from code
+    Log.e("ClassName","#functionName() err: ${e.message}",e)
+    // or  Crashlytics.logException(e)  ... or etc
+}
 ```
 
 <br />
