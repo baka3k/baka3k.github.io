@@ -8,7 +8,7 @@ nav_order: 52
 
 ## 01. Logging
 
-- [ ] (Mandatory) Always add log for exception case
+- [ ] [Mandatory] Always add log for exception case
 
 ```kotlin
 try {
@@ -21,7 +21,7 @@ try {
 
 <br />
 
-- [ ] (Mandatory) Do not ignore exception
+- [ ] [Mandatory] Do not ignore exception
 
 __BAD__
 
@@ -49,7 +49,7 @@ try {
 
 ## 02. Exception
 
-- [ ] (Mandatory) Do not use generic exception
+- [ ] [Mandatory] Do not use generic exception
 
 __BAD__
 
@@ -76,7 +76,7 @@ try {
 
 <br />
 
-- [ ] (Optional) Try throw exception instead of return error for *Critical* issue
+- [ ] [Optional] Try throw exception instead of return error for *Critical* issue
 
 __BAD__
 

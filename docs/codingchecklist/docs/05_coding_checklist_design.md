@@ -8,7 +8,7 @@ nav_order: 61
 
 ## 01. Design Class
 
-- [ ] (Recommendation) Follow DI, do not create instance inside class
+1. - [ ] [Recommendation] Follow DI, do not create instance inside class
 
 __BAD:__
 ```kotlin
@@ -24,15 +24,15 @@ class BarcodeDecoder(private val display: Display) {
     // to do smth
 }
 ```
-- [ ] (Recommendation) Prefer composition over inheritance
+1. - [ ] [Recommendation] Prefer composition over inheritance
 
-- [ ] (Recommendation) Do not use static navigation in xml - instead, use [Kotlin DSL](https://developer.android.com/guide/navigation/navigation-kotlin-dsl)
+1. - [ ] [Recommendation] Do not use static navigation in xml - instead, use [Kotlin DSL](https://developer.android.com/guide/navigation/navigation-kotlin-dsl)
 
 <br />
 
 ## 02. Design Data
 
-- [ ] (Mandatory) Declare API class correctly, use Nullable type for optional property. Default value for network/io response data. For example:
+1. - [ ] [Mandatory] Declare API class correctly, use Nullable type for optional property. Default value for network/io response data. For example:
 
 ```kotlin
 @Serializable
@@ -47,6 +47,6 @@ data class NetworkEpisode(
 
 ## 03. Design Thread
 
-- [ ] (Mandatory) Do not direct use `Java#Thread()` 
+1. - [ ] [Mandatory] Do not direct use `Java#Thread()` 
 
-- [ ] (Mandatory) Do not run bulk of tasks/threads without Thread Pool
+1. - [ ] [Mandatory] Do not run bulk of tasks/threads without Thread Pool
