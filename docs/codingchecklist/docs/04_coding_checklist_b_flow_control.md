@@ -54,35 +54,35 @@ if (existed) {
 
 1. - [ ] [Mandatory] Do not init value in contructor of customview, should wait until inflate layout finish
 
-__BAD:__
-```kotlin
-class BadInitCustomView : View {
-    constructor(context: Context?, attributeSet: AttributeSet?, defStyleAttr: Int) : super(context,attributeSet,defStyleAttr) {
-        init(context!!, attrs = attributeSet, defStyleAttr = defStyleAttr)
-    }
+    __BAD:__
+    ```kotlin
+    class BadInitCustomView : View {
+        constructor(context: Context?, attributeSet: AttributeSet?, defStyleAttr: Int) : super(context,attributeSet,defStyleAttr) {
+            init(context!!, attrs = attributeSet, defStyleAttr = defStyleAttr)
+        }
 
-    private fun init(context: Context, attrs: AttributeSet?, defStyleAttr: Int) {
-        // to do smt
+        private fun init(context: Context, attrs: AttributeSet?, defStyleAttr: Int) {
+            // to do smt
+        }
     }
-}
-```
-__GOOD:__
-```kotlin
-class GoodInitCustomView(
-    context: Context?,
-    private val attributeSet: AttributeSet?,
-    private val defStyleAttr: Int
-) : View(context, attributeSet, defStyleAttr) {
+    ```
+    __GOOD:__
+    ```kotlin
+    class GoodInitCustomView(
+        context: Context?,
+        private val attributeSet: AttributeSet?,
+        private val defStyleAttr: Int
+    ) : View(context, attributeSet, defStyleAttr) {
 
-    private fun init(context: Context, attrs: AttributeSet?, defStyleAttr: Int?) {
-        // to do smt
-    }
-    override fun onFinishInflate() {
-        super.onFinishInflate()
-        init(context, attrs = attributeSet, defStyleAttr = defStyleAttr) // wait until inflate layout finish
-    }
-}  
-```
+        private fun init(context: Context, attrs: AttributeSet?, defStyleAttr: Int?) {
+            // to do smt
+        }
+        override fun onFinishInflate() {
+            super.onFinishInflate()
+            init(context, attrs = attributeSet, defStyleAttr = defStyleAttr) // wait until inflate layout finish
+        }
+    }  
+    ```
 
 1. - [ ] [Recommendation] Prefer to use collectAsStateWithLifecycle over collectAsState for UI state<br/>
 __BAD:__
