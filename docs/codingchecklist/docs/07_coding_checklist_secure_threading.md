@@ -99,7 +99,7 @@ fun test() {
 
 fun raceCondition() {
     while (true) {
-        if (i == 50) { // error in this line - 'Race Condition' Error is still to happen 
+        if (i == 50) { // error in this line - 'Race Condition' Error still occurs, nerver going to 'break'
             break
         }
         println("i $i")
@@ -123,7 +123,7 @@ fun test() {
 
 fun raceCondition() {
     while (true) {
-        if (i <= 50) { // used '<=' instead of '=='
+        if (i <= 50) { // used '<=' instead of '=='  - 'Race Condition' Error still occurs, but can jump to next logic
             break
         }
         println("i $i")
