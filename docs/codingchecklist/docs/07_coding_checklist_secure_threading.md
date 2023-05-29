@@ -99,7 +99,7 @@ fun test() {
 
 fun raceCondition() {
     while (true) {
-        if (i == 50) { // error in this line - 'Race Condition' Error still occurs, nerver going to 'break'
+        if (i == 50) { // error in this line - 'Race Condition' Error still occurs, nerver going to `break`
             break
         }
         println("i $i")
