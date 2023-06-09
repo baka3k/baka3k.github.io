@@ -25,7 +25,7 @@ openssl req -new -days 3650 -key priv_and_pub.key -out CA.pem
 openssl x509 -req -days 3650 -in CA.pem -signkey priv_and_pub.key -extfile ./android_options.txt -out CA.crt
 ```
 
-After that, you can find `CA.crt` & `CA.pem` in yout folder
+After that, you can find `CA.crt` & `CA.pem` in your folder
 
 *In additions, you can convert cert to DER format by command* 
 ```xml
