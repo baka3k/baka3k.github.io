@@ -72,10 +72,10 @@ Developers can use push code without restrictions, as long as they comply with t
 
 **4. Business CoreService:** 
 -   Core service of application, such as: Account, Loyalty, Payment..etc
--   JS Bundle Loader: Management JsBundle, version up…
 
 **5. JavaScript Runtime:**
 -   In charge of loading mini apps into the application through Jsbundle packages at runtime
+-   JS Bundle Loader: Management JsBundle, version up…
 -   Hermes(recommend) or V8/JavaScriptCore
 
 #### Mini App SDK
