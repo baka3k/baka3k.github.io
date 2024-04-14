@@ -1,3 +1,10 @@
+---
+layout: default
+title: Super App Guideline
+parent: 03. Solutions
+nav_order: 50
+---
+
 
 # Key Architectural Drivers
 -   Maximize the ability to distribute
