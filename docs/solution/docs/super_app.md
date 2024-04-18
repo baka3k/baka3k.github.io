@@ -2,7 +2,7 @@
 layout: default
 title: Super App Guideline
 parent: 03. Solutions
-nav_order: 50
+nav_order: 52
 ---
 
 
