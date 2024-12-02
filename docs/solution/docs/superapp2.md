@@ -1,3 +1,10 @@
+---
+layout: default
+title: Super App Guideline P2 - Security
+parent: 03. Solutions
+nav_order: 203
+---
+
 # Secure Super App
 
 Some time ago, I wrote a piece about Super Apps and posted it here  [https://medium.com/@baka3k/super-app-guideline-128abd24a711](https://medium.com/@baka3k/super-app-guideline-128abd24a711). I hope this will provide valuable insights for developers and businesses seeking to build a Super App as part of their digital transformation journey.
