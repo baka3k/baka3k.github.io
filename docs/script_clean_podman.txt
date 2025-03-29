@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Dừng toàn bộ container đang chạy
+echo "🛑 Dừng toàn bộ container..."
+podman stop -a
+
+# Xóa toàn bộ container (đã dừng hoặc vẫn đang chạy)
+echo "🗑️ Xóa toàn bộ container..."
+podman rm -a
+
+# Xóa toàn bộ image đã pull về
+echo "🔥 Xóa toàn bộ image..."
+podman rmi -a -f
+
+# Xóa toàn bộ volume và network cũ
+echo "🧹 Dọn dẹp volume và network..."
+podman volume rm -a
+podman network prune -f
+
+# Reset Podman hoàn toàn về trạng thái ban đầu (option)
+read -p "💥 Bạn có muốn reset toàn bộ Podman không? (y/n): " RESET_CONFIRM
+if [[ "$RESET_CONFIRM" == "y" ]]; then
+  echo "⚙️ Reset toàn bộ Podman về trạng thái mới cài..."
+  podman system reset -f
+fi
+
+# Hoàn thành
+echo "✅ Podman đã được dọn dẹp hoàn tất!"

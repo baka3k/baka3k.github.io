@@ -1,0 +1,19 @@
+FROM node:18-alpine
+
+RUN apk add --no-cache \
+    chromium \
+    nss \
+    freetype \
+    harfbuzz \
+    ca-certificates \
+    ttf-freefont && \
+    npm install -g n8n puppeteer && \
+    npm cache clean --force
+
+RUN mkdir -p /home/node/.n8n && \
+    chown -R node:node /home/node/.n8n && \
+    chmod -R 777 /home/node/.n8n
+
+USER node
+
+CMD ["n8n"]

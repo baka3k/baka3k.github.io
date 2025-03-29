@@ -1,0 +1,146 @@
+#!/bin/bash
+
+set -e
+
+###############################################
+# CẤU HÌNH BIẾN
+###############################################
+N8N_IMAGE="docker.io/n8nio/n8n:latest"
+CADDY_IMAGE="docker.io/library/caddy:latest"
+CUSTOM_N8N_IMAGE="localhost/n8n_puppeteer:latest"
+N8N_CONTAINER_NAME="n8n"
+CADDY_CONTAINER_NAME="caddy"
+N8N_PORT=5678
+CADDY_PORT=8443
+DOMAIN="localhost"
+BASE_FOLDER="n8n_podman"
+N8N_FOLDER="$BASE_FOLDER/n8n"
+CADDY_FOLDER="$BASE_FOLDER/caddy"
+CERT_PATH="$BASE_FOLDER/certs"
+NETWORK_NAME="n8n_network"
+
+N8N_VOLUME="n8n_podman_n8n"
+CADDY_VOLUME="n8n_podman_caddy"
+CERT_VOLUME="n8n_podman_certs"
+CADDYFILE_PATH="$CADDY_FOLDER/Caddyfile"
+
+###############################################
+# TẠO THƯ MỤC CHÍNH VÀ CÁC THƯ MỤC CON
+###############################################
+mkdir -p "$N8N_FOLDER" "$CADDY_FOLDER" "$CERT_PATH"
+
+###############################################
+# TẠO NETWORK NẾU CHƯA CÓ
+###############################################
+if ! podman network exists $NETWORK_NAME; then
+  echo "Tạo network $NETWORK_NAME"
+  podman network create $NETWORK_NAME
+else
+  echo "Network $NETWORK_NAME đã tồn tại"
+fi
+
+###############################################
+# TẠO CHỨNG CHỈ TỰ KÝ
+###############################################
+if [ ! -f "$CERT_PATH/localhost.pem" ] || [ ! -f "$CERT_PATH/localhost-key.pem" ]; then
+  echo "Tạo chứng chỉ tự ký"
+  openssl req -x509 -newkey rsa:4096 -keyout "$CERT_PATH/localhost-key.pem" -out "$CERT_PATH/localhost.pem" -days 365 -nodes -subj "/CN=$DOMAIN"
+else
+  echo "Chứng chỉ đã tồn tại, bỏ qua bước tạo"
+fi
+
+###############################################
+# TẠO CUSTOM N8N IMAGE VỚI PUPPETEER TRÊN ALPINE
+###############################################
+cat <<EOF > $BASE_FOLDER/Dockerfile
+FROM node:18-alpine
+
+# Cài Puppeteer và Chromium
+RUN apk add --no-cache \
+    chromium \
+    nss \
+    freetype \
+    harfbuzz \
+    ca-certificates \
+    ttf-freefont && \
+    npm install -g n8n puppeteer && \
+    npm cache clean --force && \
+    rm -rf /tmp/* /var/cache/apk/* /root/.npm /root/.node-gyp /home/node/.npm /home/node/.node-gyp
+
+# Tạo thư mục cấu hình và gán quyền chính xác
+RUN mkdir -p /home/node/.n8n && chown -R node:node /home/node/.n8n && chmod -R 700 /home/node/.n8n
+
+# Chạy dưới quyền node
+USER node
+
+# Cấu hình thư mục làm việc
+WORKDIR /home/node
+
+# Khởi động n8n
+CMD ["n8n"]
+EOF
+
+echo "🚀 Đang build custom image n8n với Puppeteer trên Alpine..."
+podman build -t $CUSTOM_N8N_IMAGE $BASE_FOLDER
+rm $BASE_FOLDER/Dockerfile
+
+###############################################
+# CHẠY N8N CONTAINER VỚI IMAGE MỚI
+###############################################
+podman run -d \
+  --name $N8N_CONTAINER_NAME \
+  --network $NETWORK_NAME \
+  -e N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=false \
+  -v "$N8N_VOLUME:/home/node/.n8n:Z" \
+  -p $N8N_PORT:5678 \
+  $CUSTOM_N8N_IMAGE
+
+###############################################
+# TẠO FILE CADDYFILE
+###############################################
+CADDYFILE="$CADDY_FOLDER/Caddyfile"
+cat <<EOL > "$CADDYFILE"
+:8443 {
+    reverse_proxy $N8N_CONTAINER_NAME:$N8N_PORT
+    tls /etc/caddy/certs/localhost.pem $CERT_PATH/localhost-key.pem
+    log {
+        output stdout
+        level DEBUG
+    }
+}
+EOL
+
+###############################################
+# CHẠY CADDY CONTAINER
+###############################################
+# old
+# podman run -d \
+#   --name $CADDY_CONTAINER_NAME \
+#   --network $NETWORK_NAME \
+#   -p $CADDY_PORT:8443 \
+#   -v "$(pwd)/$CADDYFILE_PATH:/etc/caddy/Caddyfile:Z" \
+#   -v "$CERT_VOLUME:/etc/caddy/certs" \
+#   $CADDY_IMAGE
+podman run -d \
+  --name $CADDY_CONTAINER_NAME \
+  --network $NETWORK_NAME \
+  -p $CADDY_PORT:8443 \
+  -v "$(pwd)/$CADDYFILE_PATH:/etc/caddy/Caddyfile:Z" \
+  -v "$CERT_PATH:/etc/caddy/certs" \
+  $CADDY_IMAGE
+# CADDY_FOLDER = n8n_podman/caddy
+# n8n_podman/caddy/Caddyfile
+# ok - test
+ # podman run -d \
+ #  --name caddy \
+ #  --network n8n_network \
+ #  -p 8443:8443 \
+ #  -v "$(pwd)/n8n_podman/caddy/Caddyfile:/etc/caddy/Caddyfile:Z" \
+ #  -v "$(pwd)/n8n_podman/certs:/etc/caddy/certs:Z" \
+ #  docker.io/library/caddy:latest
+
+###############################################
+# THÔNG BÁO HOÀN THÀNH
+###############################################
+echo "✅ Đã hoàn thành cài đặt n8n với Puppeteer và HTTPS trên Podman!"
+echo "👉 Truy cập: https://localhost:$CADDY_PORT"
